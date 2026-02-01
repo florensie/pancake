@@ -1,30 +1,4 @@
-# pancake
-
-A custom bootc operating system image based on [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). This is a fully bootstrapped OS ready to build and deploy.
-
-## What Makes this Pancake Different?
-
-This is a custom OS based on **Fedora Silverblue**. This image is built using the same architecture as Bluefin, Aurora, and Bluefin LTS.
-
-### Base Configuration
-- **Base Image**: Fedora Silverblue (GNOME Desktop)
-- **Desktop Environment**: GNOME (from base image)
-- **Package Manager**: rpm-ostree with dnf5 for build-time packages
-
-### Added Packages (Build-time)
-No additional system packages have been added yet. Customize by editing `build/10-build.sh`.
-
-### Added Applications (Runtime)
-- **CLI Tools (Homebrew)**: Ready for you to add via `custom/brew/*.Brewfile`
-- **GUI Apps (Flatpak)**: Ready for you to add via `custom/flatpaks/*.preinstall`
-
-### Configuration Changes
-- Image name configured as "pancake"
-- Ready for customization based on your needs
-
-*Last updated: 2026-02-01*
-
----
+# Pancake
 
 A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux. 
 
@@ -87,22 +61,6 @@ Use @projectbluefin/finpilot as a template, name the OS the repository name. Ens
 
 ## Quick Start
 
-### Complete Setup Checklist
-
-To fully bootstrap your pancake operating system, complete these steps:
-
-- [ ] **Step 1**: Create repository from template
-- [ ] **Step 2**: Rename project (update 6 files)
-- [ ] **Step 3**: Enable GitHub Actions and set permissions
-- [ ] **Step 4**: Verify first build completes successfully
-- [ ] **Step 5**: (Optional) Enable image signing for production
-- [ ] **Step 6**: Customize your image (packages, apps, etc.)
-- [ ] **Step 7**: Deploy to a machine
-
-Detailed instructions for each step follow below.
-
----
-
 ### 1. Create Your Repository
 
 Click "Use this template" to create a new repository from this template.
@@ -120,52 +78,14 @@ Important: Change `pancake` to your repository name in these 6 files:
 
 ### 3. Enable GitHub Actions
 
-**Step 1: Enable Workflows**
 - Go to the "Actions" tab in your repository
 - Click "I understand my workflows, go ahead and enable them"
 
-**Step 2: Configure Permissions** (Important!)
-- Go to Settings → Actions → General
-- Scroll down to "Workflow permissions"
-- Select "Read and write permissions"
-- Check "Allow GitHub Actions to create and approve pull requests"
-- Click "Save"
+Your first build will start automatically! 
 
-These permissions are required for:
-- Pushing built container images to GitHub Container Registry (ghcr.io)
-- Renovate bot to create automatic update pull requests
-- Automated image cleanup workflows
+Note: Image signing is disabled by default. Your images will build successfully without any signing keys. Once you're ready for production, see "Optional: Enable Image Signing" below.
 
-Your first build will start automatically after enabling workflows!
-
-**Note**: Image signing is disabled by default. Your images will build successfully without any signing keys. Once you're ready for production, see "Optional: Enable Image Signing" below.
-
-### 4. Verify Your Build
-
-After enabling GitHub Actions, verify everything is working:
-
-**Check Build Status:**
-1. Go to the "Actions" tab in your repository
-2. You should see a "Build container image" workflow running
-3. Wait for it to complete (usually 5-15 minutes)
-4. Verify the build succeeded (green checkmark ✓)
-
-**Check Container Image:**
-1. Go to your repository homepage
-2. Look for "Packages" on the right sidebar
-3. Click on your `pancake` package
-4. You should see your image with the `:stable` tag
-
-**Troubleshooting:**
-- If the build fails, check the workflow logs for errors
-- Common issues:
-  - Permissions not set correctly (see Step 3)
-  - Syntax errors in build scripts (run `shellcheck build/*.sh` locally)
-  - Invalid Brewfile/Flatpak syntax (workflows will validate these on PRs)
-
-Once your first build succeeds, your OS is fully bootstrapped and ready to deploy! 🎉
-
-### 5. Customize Your Image
+### 4. Customize Your Image
 
 Choose your base image in `Containerfile` (line 23):
 ```dockerfile
@@ -182,7 +102,7 @@ Customize your apps:
 - Add Flatpaks in `custom/flatpaks/` ([guide](custom/flatpaks/README.md))
 - Add ujust commands in `custom/ujust/` ([guide](custom/ujust/README.md))
 
-### 6. Development Workflow
+### 5. Development Workflow
 
 All changes should be made via pull requests:
 
@@ -194,7 +114,7 @@ All changes should be made via pull requests:
 4. Once checks pass, merge the PR
 5. Merging triggers publishes a `:stable` image
 
-### 7. Deploy Your Image
+### 6. Deploy Your Image
 
 Switch to your image:
 ```bash
