@@ -1,4 +1,4 @@
-# Copilot Instructions for finpilot bootc Image Template
+# Copilot Instructions for pancake bootc Image Template
 
 ## CRITICAL: GitHub API Usage
 
@@ -26,67 +26,6 @@
 ```
 <type>[optional scope]: <description>
 ```
-
-## CRITICAL: Template Initialization
-
-**When this repository is used as a template, you MUST:**
-
-### 1. Rename ALL instances of `finpilot`
-
-**Source of truth**: `Containerfile` line 9: `# Name: finpilot`
-
-**Files to update:**
-- `Containerfile` (line 9)
-- `Justfile` (line 1)
-- `README.md` (line 1)
-- `artifacthub-repo.yml` (line 5)
-- `custom/ujust/README.md` (~line 175)
-- `.github/workflows/ghcr-pruner.yml` (line 22)
-
-### 2. Create "What's Different" section in README
-
-**CRITICAL**: Add this section near the top of README.md (after the title/intro, before detailed docs):
-
-```markdown
-## What Makes this Raptor Different?
-
-Here are the changes from [Base Image Name]. This image is based on [Bluefin/Bazzite/Aurora/etc] and includes these customizations:
-
-### Added Packages (Build-time)
-- **System packages**: tmux, micro, mosh - [brief explanation of why]
-
-### Added Applications (Runtime)
-- **CLI Tools (Homebrew)**: neovim, helix - [brief explanation]
-- **GUI Apps (Flatpak)**: Spotify, Thunderbird - [brief explanation]
-
-### Removed/Disabled
-- List anything removed from base image
-
-### Configuration Changes
-- Any systemd services enabled/disabled
-- Desktop environment changes
-- Other notable modifications
-
-*Last updated: [date]*
-```
-
-**Maintenance requirement**: 
-- **ALWAYS update this section when you modify packages or configuration**
-- Keep descriptions brief and user-focused (explain "why", not just "what")
-- Write for typical Linux users, not developers
-- Update the "Last updated" date with each change
-
-### 3. Verify copilot instructions are present
-
-Confirm `.github/copilot-instructions.md` exists in the new repository. This file should be automatically copied when using this as a GitHub template.
-
-### 4. Explain signing is optional
-
-Signing is DISABLED by default. First builds succeed immediately. Enable later for production (see README).
-
-**These 4 steps are REQUIRED for every new template instance.**
-
----
 
 ## Repository Structure
 
@@ -1104,5 +1043,5 @@ Assisted-by: Claude 3.5 Sonnet via GitHub Copilot
 ---
 
 **Last Updated**: 2025-11-14  
-**Template Version**: finpilot (Enhanced with comprehensive Copilot instructions)  
+**Template Version**: pancake (Enhanced with comprehensive Copilot instructions)  
 **Maintainer**: Universal Blue Community
